@@ -1,0 +1,23 @@
+language: node_js
+node_js:
+  - '10'
+
+sudo: false
+dist: trusty
+
+cache:
+  directories:
+    - $HOME/.npm
+
+branches:
+  only:
+    - master
+
+install:
+  - set -e
+  - npm install --non-interactive
+
+script:
+  - set -e
+  - npm run lint:js --quiet
+  - npm run test
