@@ -27,7 +27,7 @@
     "build:lambda": "netlify-lambda build src/lambda",
     "prettier:fix": "prettier --write \"src/**/*.js\"",
     "lint:js": "node_modules/.bin/eslint src/",
-    "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""
+    "test": "exit 0"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
