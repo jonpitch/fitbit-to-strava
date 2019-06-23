@@ -25,4 +25,4 @@ before_script:
 script:
   - set -e
   - npm run lint:js --quiet
-  - npm run test
+  - npm run test:ci

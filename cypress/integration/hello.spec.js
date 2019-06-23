@@ -1,23 +1,23 @@
-import { handler } from "../../src/lambda/hello";
+import { handler } from '../../src/lambda/hello';
 
 // https://github.com/cypress-io/cypress/issues/95
 const deferred = function() {
-  const deferred = {};
-  deferred.promise = new Promise((resolve, reject) => {
-    deferred.resolve = resolve;
-    deferred.reject = reject;
+  const defer = {};
+  defer.promise = new Promise((resolve, reject) => {
+    defer.resolve = resolve;
+    defer.reject = reject;
   });
-  return deferred;
+  return defer;
 };
 
-context("hello world", () => {
+context('hello world', () => {
   beforeEach(() => {
     let helloLambdaDeferred = deferred();
-    cy.visit("http://localhost:8000", {
+    cy.visit('http://localhost:8000', {
       onBeforeLoad(win) {
-        cy.stub(win, "fetch")
-          .withArgs("/.netlify/functions/hello")
-          .as("helloLambda")
+        cy.stub(win, 'fetch')
+          .withArgs('/.netlify/functions/hello')
+          .as('helloLambda')
           .returns(helloLambdaDeferred.promise);
       }
     });
@@ -25,36 +25,37 @@ context("hello world", () => {
     helloLambdaDeferred.resolve({
       json() {
         return {
-          msg: "Hello World! 0"
+          msg: 'Hello World! 0'
         };
       },
       ok: true
     });
   });
 
-  it("integration test", () => {
+  it('integration test', () => {
     cy.server();
-    cy.get("button#dummy").click();
-    cy.get("p#msg").should("contain", "Hello World! 0");
+    cy.percySnapshot('index');
+    cy.get('button#dummy').click();
+    cy.get('p#msg').should('contain', 'Hello World! 0');
   });
 
-  it("lambda unit test", () => {
+  it('lambda unit test', () => {
     const event = {
-      path: "/hello",
-      httpMethod: "GET",
+      path: '/hello',
+      httpMethod: 'GET',
       queryStringParameters: null,
       headers: {
-        referer: "http://localhost:8000/"
+        referer: 'http://localhost:8000/'
       }
     };
     const clientContext = {};
 
     let callbackFired = false;
-    const callback = function(_, expectedResponse) {
+    const callback = function() {
       callbackFired = true;
     };
 
-    const response = handler(event, clientContext, callback);
+    handler(event, clientContext, callback);
     expect(callbackFired).to.equal(true);
   });
 });
