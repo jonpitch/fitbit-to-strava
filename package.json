@@ -27,9 +27,10 @@
     "build:lambda": "netlify-lambda build src/lambda",
     "prettier:fix": "prettier --write \"src/**/*.js\"",
     "lint:js": "node_modules/.bin/eslint src/",
-    "test": "exit 0"
+    "test": "node_modules/.bin/cypress run"
   },
   "devDependencies": {
+    "cypress": "^3.3.1",
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^5.0.0",
     "eslint-plugin-prettier": "^3.1.0",

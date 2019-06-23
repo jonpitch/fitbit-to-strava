@@ -17,10 +17,10 @@ class IndexPage extends React.Component {
     return (
       <Page>
         <h1>index</h1>
-        <button onClick={this.handleClick}>
+        <button id="dummy" onClick={this.handleClick}>
           {loading ? 'Loading...' : 'Call Lambda Function'}
         </button>
-        <p>{msg}</p>
+        <p id="msg">{msg}</p>
       </Page>
     );
   }
