@@ -1,9 +1,11 @@
 language: node_js
 node_js:
-  - '10'
+  - 10
 
-sudo: false
-dist: trusty
+addons:
+  apt:
+    packages:
+      - libgconf-2-4
 
 cache:
   directories:
@@ -18,11 +20,10 @@ install:
   - set -e
   - npm ci
 
-before_script:
-  - set -e
-  - npm run serve &
-
 script:
   - set -e
   - npm run lint:js --quiet
+  # https://github.com/percy/percy-cypress/issues/104
+  - sudo ln -s $(which node) /usr/bin/node
+  - npm run serve &
   - npm run test:ci

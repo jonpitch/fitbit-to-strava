@@ -23,18 +23,17 @@ context('hello world', () => {
       }
     });
 
-    cy.percySnapshot('index');
-
     helloLambdaDeferred.resolve({
+      ok: true,
       json() {
         return {
           msg: 'Hello World! 0'
         };
-      },
-      ok: true
+      }
     });
 
     cy.server();
+    cy.percySnapshot();
     cy.get('button#dummy').click();
     cy.get('p#msg').should('contain', 'Hello World! 0');
   });

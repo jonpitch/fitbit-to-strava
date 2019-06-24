@@ -71,3 +71,4 @@ yarn-error.log
 .netlify
 
 cypress/videos/
+cypress/screenshots/
