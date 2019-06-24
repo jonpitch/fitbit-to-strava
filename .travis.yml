@@ -18,11 +18,8 @@ install:
   - set -e
   - npm ci
 
-before_script:
-  - set -e
-  - npm run serve &
-
 script:
   - set -e
   - npm run lint:js --quiet
+  - npm run serve &
   - npm run test:ci
