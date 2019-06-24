@@ -27,7 +27,8 @@
     "build:lambda": "netlify-lambda build src/lambda",
     "prettier:fix": "prettier --write \"src/**/*.js\" \"cypress/**/*.js\"",
     "lint:js": "node_modules/.bin/eslint src/ cypress/",
-    "test": "node_modules/.bin/cypress run",
+    "cypress:run": "node_modules/.bin/cypress run",
+    "cypress:open": "node_modules/.bin/cypress open",
     "test:ci": "percy exec -- node_modules/.bin/cypress run"
   },
   "devDependencies": {

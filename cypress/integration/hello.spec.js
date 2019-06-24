@@ -7,11 +7,12 @@ const deferred = function() {
     defer.resolve = resolve;
     defer.reject = reject;
   });
+
   return defer;
 };
 
 context('hello world', () => {
-  beforeEach(() => {
+  it('integration test', () => {
     let helloLambdaDeferred = deferred();
     cy.visit('http://localhost:8000', {
       onBeforeLoad(win) {
@@ -22,6 +23,8 @@ context('hello world', () => {
       }
     });
 
+    cy.percySnapshot('index');
+
     helloLambdaDeferred.resolve({
       json() {
         return {
@@ -30,11 +33,8 @@ context('hello world', () => {
       },
       ok: true
     });
-  });
 
-  it('integration test', () => {
     cy.server();
-    cy.percySnapshot('index');
     cy.get('button#dummy').click();
     cy.get('p#msg').should('contain', 'Hello World! 0');
   });
