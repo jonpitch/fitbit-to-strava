@@ -1,9 +1,11 @@
 language: node_js
 node_js:
-  - '10'
+  - 10
 
-sudo: false
-dist: trusty
+addons:
+  apt:
+    packages:
+      - libgconf-2-4
 
 cache:
   directories:
