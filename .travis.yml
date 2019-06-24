@@ -7,7 +7,8 @@ dist: trusty
 
 cache:
   directories:
-    - $HOME/.npm
+    - ~/.npm
+    - ~/.cache
 
 branches:
   only:
@@ -15,9 +16,13 @@ branches:
 
 install:
   - set -e
-  - npm install --non-interactive
+  - npm ci
+
+before_script:
+  - set -e
+  - npm run serve &
 
 script:
   - set -e
   - npm run lint:js --quiet
-  - npm run test
+  - npm run test:ci

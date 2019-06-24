@@ -1,7 +1,8 @@
 module.exports = {
   env: {
     browser: true,
-    es6: true
+    es6: true,
+    'cypress/globals': true
   },
   globals: {
     process: true
@@ -14,8 +15,12 @@ module.exports = {
       jsx: true
     }
   },
-  plugins: ['prettier'],
-  extends: ['eslint:recommended', 'plugin:react/recommended'],
+  plugins: ['prettier', 'cypress'],
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:cypress/recommended'
+  ],
   rules: {
     'prettier/prettier': ['error'],
     'no-debugger': 'error',
