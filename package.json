@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "author": "Jon Pitcherella",
   "dependencies": {
-    "gatsby": "^2.0.76",
+    "gatsby": "^4.25.7",
     "gatsby-plugin-create-client-paths": "^2.0.2",
     "gatsby-plugin-manifest": "^2.0.9",
     "gatsby-plugin-react-helmet": "^3.0.2",
